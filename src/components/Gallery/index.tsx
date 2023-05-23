@@ -29,6 +29,7 @@ export default function Gallery() {
 			gender: 'male',
 		},
 	]
+
 	const data = getData()
 
 	const renderProfiles = (user: IProfile, index: number) => (
