@@ -2,7 +2,18 @@ import React, {useState} from 'react'
 import './App.css'
 
 
-const TodoItem = (props: any) => {
+interface ITodoItem {
+	id: number,
+	value: string,
+	isDone: boolean,
+}
+interface ITodoItemProps  extends ITodoItem  {
+	setTodo:  React.Dispatch<React.SetStateAction<ITodoItem[]>>
+}
+
+
+
+const TodoItem = (props: ITodoItemProps) => {
 	const style = {textDecoration: props.isDone ? 'line-through' : 'none'}
 	function deleteTodo() {
 		props.setTodo(prevState => prevState.filter(todo => todo.id !== props.id)
@@ -21,7 +32,7 @@ const TodoItem = (props: any) => {
 	}
 
 
-	return <div className='todo-item' style={{backgroundColor: "black"}}>
+	return <div className='todo-item' style={{backgroundColor: 'black'}}>
 		<input type='checkbox' checked={props.isDone} onClick={checkTodo}/>
 		<p style={style}>{props.value}</p>
 
@@ -48,7 +59,7 @@ function App() {
 
 
 	// return <Gallery/>\
-	return (<div style={{backgroundColor: "gray"}}>
+	return (<div style={{backgroundColor: 'gray'}}>
 		<h1>Todo list</h1>
 		<div className="todo-input-container" >
 			<input id='input-todo' type="text"/>
